@@ -32,7 +32,7 @@ next();
   }
 }
 app.use(cors({
-  origin: ['http://localhost:4200',corsAllowedDomains]
+  origin: ['http://localhost:4200','https://institute-management-front.vercel.app']
 }));
     // app.use(function(req, res, next) {
     //     res.header("Access-Control-Allow-Origin", "*");
