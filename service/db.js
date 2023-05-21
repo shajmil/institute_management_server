@@ -1,17 +1,9 @@
 const autoIncrement = require('mongoose-auto-increment');
 const mongodbURI = process.env.MONGODB_URI;
-const { MongoClient, ServerApiVersion } = require('mongodb');
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
-const client = new MongoClient(mongodbURI, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
-client
+mongoose
   .connect(mongodbURI, {
     useNewUrlParser: true,
   })
