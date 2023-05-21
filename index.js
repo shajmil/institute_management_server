@@ -9,7 +9,7 @@ const fs = require("fs")
 const multer = require("multer")
 app.use(express.json())
 const bcrypt = require("bcryptjs")
-
+const corsAllowedDomains = process.env.CORS_ALLOWED_DOMAINS;
 const jwt = require("jsonwebtoken");
 require('dotenv').config()
 const verify=(req,res,next)=>{
@@ -32,9 +32,8 @@ next();
   }
 }
 app.use(cors({
-    origin:'http://localhost:4200'
-    
-    }))
+  origin: ['http://localhost:4200',corsAllowedDomains]
+}));
     // app.use(function(req, res, next) {
     //     res.header("Access-Control-Allow-Origin", "*");
     //     res.header("Access-Control-Allow-Methods", "GET, PUT, POST");

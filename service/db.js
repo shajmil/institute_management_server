@@ -1,15 +1,24 @@
 const autoIncrement = require('mongoose-auto-increment');
+const mongodbURI = process.env.MONGODB_URI;
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
-mongoose
-  .connect("mongodb://127.0.0.1:27017/institue", {
+const client = new MongoClient(mongodbURI, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+client
+  .connect(mongodbURI, {
     useNewUrlParser: true,
   })
   .then(() => console.log("Database connected!"))
   .catch((err) => console.log(err));
 console.log("hello");
-const connection = mongoose.createConnection('mongodb://127.0.0.1:27017/institue');
+const connection = mongoose.createConnection(mongodbURI);
 
 const user = mongoose.model(
   "teachers",
